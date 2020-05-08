@@ -12,16 +12,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchDesks ({ commit }) {
-      let desks = [
-        { id: 1, title: 'First Desk', is_favourite: 1 },
-        { id: 2, title: 'Second Desk', is_favourite: 0 }
-      ]
-
-      commit('setDesks', desks)
-
-      // axios.get()
-    }
+    // fetchDesks ({ commit }) {
+    //   let desks = [
+    //     { id: 1, title: 'First Desk', is_favourite: 1 },
+    //     { id: 2, title: 'Second Desk', is_favourite: 0 }
+    //   ]
+    //   commit('setDesks', desks)
+    //   // axios.get()
+    // }
   },
   modules: {}
 })

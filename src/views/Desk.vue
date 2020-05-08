@@ -1,26 +1,40 @@
 <template>
   <div>
-    <ListsGrid></ListsGrid>
+    <ListsGrid :lists="lists"></ListsGrid>
   </div>
 </template>
 
 <script>
 // import TaskGrid from "@/components/TaskGrid";
+import axios from "axios";
 import ListsGrid from "@/components/ListsGrid";
 export default {
-  components: {
-    ListsGrid,
+  data() {
+    return { lists: [] };
   },
-  computed: {
-    tasks() {
-      return this.fetchLists();
-    },
+  components: {
+    ListsGrid
+  },
+  created() {
+    this.fetchLists();
+  },
+  watch: {
+    $route() {
+      this.fetchLists();
+    }
   },
   methods: {
+    // todo выходит они дублируются здесь и в listsgrid что нехорошо, поправить
     fetchLists() {
-      return [];
-    },
-  },
+      axios
+        .get("http://mytrello_api.com/api/lists/byDesk.php", {
+          params: { desk_id: this.$route.query.id }
+        })
+        .then(response => {
+          this.lists = response.data.data;
+        });
+    }
+  }
 };
 </script>
 
