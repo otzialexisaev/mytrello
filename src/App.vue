@@ -31,9 +31,9 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar> -->
+    </v-app-bar>-->
 
-    <v-content>
+    <v-content class="blue-grey lighten-5">
       <router-view />
       <!-- <HelloWorld /> -->
     </v-content>
@@ -52,6 +52,6 @@ export default {
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>

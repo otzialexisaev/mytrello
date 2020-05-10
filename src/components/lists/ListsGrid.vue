@@ -1,7 +1,7 @@
 <template>
   <!-- <div id="lists-grid"> -->
   <div>
-    <v-container class="grey lighten-5 mb-6">
+    <v-container class="blue-grey lighten-5 mb-6">
       <v-row align="start" justify="start" no-gutters style="height: 150px;">
         <v-col v-for="list in $props.lists" :key="list.id">
           <ListContainer :list="list"></ListContainer>
@@ -11,10 +11,7 @@
           <div class="list-icon-create">Добавить лист</div>
         </div>
       </v-row>
-      <CreateListModal
-        @close-modal="closeModal"
-        v-if="showModal"
-      ></CreateListModal>
+      <CreateListModal @close-modal="closeModal" v-if="showModal"></CreateListModal>
     </v-container>
   </div>
   <!-- </div> -->
@@ -27,11 +24,11 @@ export default {
   props: ["lists"],
   components: {
     ListContainer,
-    CreateListModal,
+    CreateListModal
   },
   data() {
     return {
-      showModal: false,
+      showModal: false
     };
   },
   methods: {
@@ -40,8 +37,8 @@ export default {
     },
     closeModal() {
       this.showModal = false;
-    },
-  },
+    }
+  }
 };
 // todo сделать один стиль для гридов
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <DesksGrid :desks="desks"></DesksGrid>
+  <DesksGrid @reload="fetchDesks" :desks="desks"></DesksGrid>
 </template>
 
 <script>

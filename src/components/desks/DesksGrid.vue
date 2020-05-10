@@ -2,11 +2,19 @@
   <div class="desk-icon-grid">
     <DeskIcon :obj="desk" :key="desk.id" v-for="desk in desks"></DeskIcon>
     <div @click="showHideCreateModal">
-      <div id="desk-icon-create">
+      <v-card class="grey lighten-3">
+        <v-card-title>Добавить доску</v-card-title>
+        <v-card-text></v-card-text>
+      </v-card>
+      <!-- <div id="desk-icon-create">
         <div id="desk-icon-create-clicker">Добавить доску</div>
-      </div>
+      </div>-->
     </div>
-    <CreateDeskModal @close-modal="showHideCreateModal" v-if="showCreateModal" />
+    <CreateDeskModal
+      :show="showCreateDeskModal"
+      @close-dialog="closeCreateDeskDialog"
+      v-if="showCreateDeskModal"
+    />
   </div>
 </template>
 
@@ -18,12 +26,16 @@ export default {
   components: { DeskIcon, CreateDeskModal },
   data() {
     return {
-      showCreateModal: false
+      showCreateDeskModal: false
     };
   },
   methods: {
     showHideCreateModal() {
-      this.showCreateModal = !this.showCreateModal;
+      this.showCreateDeskModal = !this.showCreateDeskModal;
+    },
+    closeCreateDeskDialog(reload) {
+      if (reload) this.$emit("reload");
+      this.showCreateDeskModal = false;
     }
   }
 };
