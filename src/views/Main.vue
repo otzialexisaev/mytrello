@@ -4,7 +4,7 @@
 
 <script>
 import axios from "axios";
-import DesksGrid from "@/components/DesksGrid";
+import DesksGrid from "@/components/desks/DesksGrid";
 export default {
   components: {
     DesksGrid

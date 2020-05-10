@@ -1,6 +1,6 @@
 <template>
-  <div id="create-desk-modul-darkbg">
-    <div id="create-desk-modul-wrapper"></div>
+  <div id="create-desk-modal-darkbg" @click="$emit('clicked')">
+    <div id="create-desk-modal-wrapper"></div>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {};
 </script>
 
 <style scoped>
-#create-desk-modul-darkbg {
+#create-desk-modal-darkbg {
   background: gray;
   width: 100%;
   height: 100%;
@@ -20,7 +20,7 @@ export default {};
   opacity: 0.5;
 }
 
-#create-desk-modul-wrapper {
+#create-desk-modal-wrapper {
   position: absolute;
   top: 0px;
   left: 0px;

@@ -7,7 +7,7 @@
 <script>
 // import TaskGrid from "@/components/TaskGrid";
 import axios from "axios";
-import ListsGrid from "@/components/ListsGrid";
+import ListsGrid from "@/components/lists/ListsGrid";
 export default {
   data() {
     return { lists: [] };
