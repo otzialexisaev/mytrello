@@ -1,11 +1,23 @@
 <template>
-  <div id="lists-grid">
-    <ListContainer :key="list.id" v-for="list in $props.lists" :list="list"></ListContainer>
-    <div @click="showHideModal">
-      <div class="list-icon-create">Добавить лист</div>
-    </div>
-    <CreateListModal @close-modal="closeModal" v-if="showModal"></CreateListModal>
+  <!-- <div id="lists-grid"> -->
+  <div>
+    <v-container class="grey lighten-5 mb-6">
+      <v-row align="start" justify="start" no-gutters style="height: 150px;">
+        <v-col v-for="list in $props.lists" :key="list.id">
+          <ListContainer :list="list"></ListContainer>
+        </v-col>
+
+        <div @click="showHideModal">
+          <div class="list-icon-create">Добавить лист</div>
+        </div>
+      </v-row>
+      <CreateListModal
+        @close-modal="closeModal"
+        v-if="showModal"
+      ></CreateListModal>
+    </v-container>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -15,11 +27,11 @@ export default {
   props: ["lists"],
   components: {
     ListContainer,
-    CreateListModal
+    CreateListModal,
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
     };
   },
   methods: {
@@ -28,8 +40,8 @@ export default {
     },
     closeModal() {
       this.showModal = false;
-    }
-  }
+    },
+  },
 };
 // todo сделать один стиль для гридов
 </script>

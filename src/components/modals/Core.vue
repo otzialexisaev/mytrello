@@ -16,7 +16,7 @@ export default {};
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 100000;
+  z-index: 100;
   opacity: 0.5;
 }
 

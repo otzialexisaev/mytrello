@@ -1,10 +1,12 @@
 <template>
-  <div class="list-item">{{task.title}}</div>
+  <v-card outlined tile>
+    <v-card-text class="pa-2">{{ task.title }}</v-card-text>
+  </v-card>
 </template>
 
 <script>
 export default {
-  props: ["task"]
+  props: ["task"],
 };
 </script>
 
