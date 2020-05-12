@@ -6,9 +6,6 @@
         <v-card-title>Добавить доску</v-card-title>
         <v-card-text></v-card-text>
       </v-card>
-      <!-- <div id="desk-icon-create">
-        <div id="desk-icon-create-clicker">Добавить доску</div>
-      </div>-->
     </div>
     <CreateDeskModal
       :show="showCreateDeskModal"
@@ -19,14 +16,15 @@
 </template>
 
 <script>
+import axios from "axios";
 import DeskIcon from "@/components/desks/DeskIcon";
 import CreateDeskModal from "@/components/modals/CreateDeskModal";
 export default {
-  props: ["desks"],
   components: { DeskIcon, CreateDeskModal },
   data() {
     return {
-      showCreateDeskModal: false
+      showCreateDeskModal: false,
+      desks: []
     };
   },
   methods: {
@@ -34,9 +32,17 @@ export default {
       this.showCreateDeskModal = !this.showCreateDeskModal;
     },
     closeCreateDeskDialog(reload) {
-      if (reload) this.$emit("reload");
+      if (reload) this.fetchDesks();
       this.showCreateDeskModal = false;
+    },
+    fetchDesks() {
+      axios.get("http://mytrello_api.com/api/desks/get.php").then(response => {
+        this.desks = response.data;
+      });
     }
+  },
+  created() {
+    this.fetchDesks();
   }
 };
 </script>

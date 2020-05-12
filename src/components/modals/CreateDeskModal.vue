@@ -63,7 +63,7 @@ export default {
     }
   },
   methods: {
-    saveForm() {
+    saveForm(context) {
       this.isLoading = true;
       axios
         .post(
@@ -74,10 +74,10 @@ export default {
           { headers: { "Content-type": "application/x-www-form-urlencoded" } }
         )
         .then(() => {
-          this.close(true);
+          this.close(context, true);
         });
     },
-    close(reload) {
+    close(context, reload) {
       this.$emit("close-dialog", reload);
     }
   }

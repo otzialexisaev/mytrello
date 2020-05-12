@@ -1,23 +1,21 @@
 <template>
-  <v-card color="red" elevation="5" width="300px">
-    <!-- <div class="list-container"> -->
-    <!-- <div class="list-container-title">{{ list.title }}</div> -->
-    <v-card-title>{{ list.title }}</v-card-title>
-    <v-card-text>
-      <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
-    </v-card-text>
-    <v-card-actions>
-      <v-btn @click.stop="showTaskModal" class="btn btn-light">
-        Добавить задание
-      </v-btn>
-    </v-card-actions>
-    <CreateTaskModal
-      @close-dialog="closeTaskModal"
-      :show="showCreateTaskModal"
-      :list_id="$props.list.id"
-    ></CreateTaskModal>
-    <!-- </div> -->
-  </v-card>
+  <div class="list-container-wrapper">
+    <v-card class="list-container" color="red" elevation="5">
+      <v-card-title>{{ list.title }}</v-card-title>
+      <v-card-text>
+        <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click.stop="showTaskModal" class="btn btn-light">Добавить задание</v-btn>
+      </v-card-actions>
+      <CreateTaskModal
+        @close-dialog="closeTaskModal"
+        :show="showCreateTaskModal"
+        :list_id="$props.list.id"
+      ></CreateTaskModal>
+      <!-- </div> -->
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -28,21 +26,21 @@ export default {
   props: ["list"],
   components: {
     TaskItem,
-    CreateTaskModal,
+    CreateTaskModal
   },
   data() {
     return {
       tasks: [],
-      showCreateTaskModal: false,
+      showCreateTaskModal: false
     };
   },
   methods: {
     fetchTasks() {
       axios
         .get("http://mytrello_api.com/api/tasks/byList.php", {
-          params: { list_id: this.$props.list.id },
+          params: { list_id: this.$props.list.id }
         })
-        .then((response) => {
+        .then(response => {
           this.tasks = response.data.data;
         });
     },
@@ -51,18 +49,23 @@ export default {
     },
     closeTaskModal() {
       this.showCreateTaskModal = false;
-    },
+    }
   },
   created() {
     this.fetchTasks();
-  },
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .list-container {
-  border-radius: 5px;
-  background-color: lightblue;
-  padding: 10px;
+  width: 300px;
+  margin: 0px 5px 0px 5px;
+}
+.list-container-wrapper:first-child {
+  margin: 0px 0px 0px -5px;
+}
+.list-container-wrapper:last-child {
+  margin: 0px 0px 0px 5px;
 }
 </style>
