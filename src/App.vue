@@ -35,7 +35,6 @@
 
     <v-content class="blue-grey lighten-5">
       <router-view />
-      <!-- <HelloWorld /> -->
     </v-content>
   </v-app>
 </template>

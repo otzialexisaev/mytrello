@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%">
+  <div style="height:100vh; width: 100vw">
     <ListsGrid :lists="lists"></ListsGrid>
   </div>
 </template>

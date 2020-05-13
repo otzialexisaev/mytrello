@@ -59,11 +59,18 @@ export default {
 
 <style>
 .list-container {
-  width: 300px;
-  margin: 0px 5px 0px 5px;
+  overflow-y: auto;
+  max-height: 100%;
+}
+.list-container-wrapper {
+  min-width: 300px;
+  max-width: 300px;
+  height: 100%;
+  display: inline-block;
+  margin: 0px 5px;
 }
 .list-container-wrapper:first-child {
-  margin: 0px 0px 0px -5px;
+  margin: 0px 5px 0px 0px;
 }
 .list-container-wrapper:last-child {
   margin: 0px 0px 0px 5px;

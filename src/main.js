@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-// require('@/assets/css/bootstrap.css')
+require('@/assets/css/my.css')
 
 new Vue({
   router,

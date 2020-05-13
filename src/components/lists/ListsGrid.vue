@@ -1,12 +1,6 @@
 <template>
-  <!-- <div id="lists-grid"> -->
-  <div class="list-grid d-flex flex-nowrap align-start" style="height: 100%; overflow-x: auto">
-    <!-- <v-container>
-      <v-row align="start" justify="start" no-gutters style="height: 150px;">
-        <v-col v-for="list in $props.lists" :key="list.id">
-    <ListContainer :list="list"></ListContainer>-->
+  <div id="list-grid">
     <ListContainer v-for="list in $props.lists" :key="list.id" :list="list"></ListContainer>
-    <!-- <v-col> -->
     <div class="list-container-wrapper">
       <div v-if="!createListFormShown" @click="showCreateListForm">
         <v-card elevation="5" style="width:300px" class="grey lighten-3">
@@ -28,12 +22,7 @@
         </v-card>
       </div>
     </div>
-    <!-- </v-col>
-      </v-row>
-      <CreateListModal @close-modal="closeModal" v-if="showModal"></CreateListModal>
-    </v-container>-->
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -118,7 +107,12 @@ export default {
 #create-list-form {
   width: 300px;
 }
-.list-grid {
+#list-grid {
   padding: 5px;
+  display: inline-flex;
+  height: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  overflow: auto hidden;
 }
 </style>
