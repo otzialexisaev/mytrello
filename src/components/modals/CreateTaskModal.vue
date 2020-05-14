@@ -1,5 +1,4 @@
 <template>
-  <!-- <ModalCore @clicked="close" /> -->
   <v-dialog @input="close" v-model="display" max-width="290">
     <v-card
       class="mx-auto"
@@ -17,22 +16,13 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn @click="close" color="error darken-1" raised tile>
-          Закрыть
-        </v-btn>
+        <v-btn :loading="isLoading" @click="close" color="error darken-1" raised tile>Закрыть</v-btn>
         <v-spacer></v-spacer>
 
-        <v-btn @click="saveForm" color="green darken-1" raised tile>
-          Сохранить
-        </v-btn>
+        <v-btn :loading="isLoading" @click="saveForm" color="green darken-1" raised tile>Сохранить</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <!-- <div id="create-desk-modal-container">
-      <input v-model="title" placeholder="edit me" />
-      <button @click="saveForm" class="btn btn-success">Сохранить</button>
-      <button class="btn btn-danger">Закрыть</button>
-    </div> -->
 </template>
 
 <script>
@@ -48,31 +38,39 @@ export default {
       },
       set: function() {
         return;
-      },
-    },
+      }
+    }
   },
 
   data() {
     return {
       title: "",
+      isLoading: false
     };
   },
   methods: {
     saveForm() {
-      axios.post(
-        "http://mytrello_api.com/api/tasks/save.php",
-        {
-          title: this.title,
-          list_id: this.$props.list_id,
-        },
-        { headers: { "Content-type": "application/x-www-form-urlencoded" } }
-      );
+      this.isLoading = true;
+      axios
+        .post(
+          "http://mytrello_api.com/api/tasks/save.php",
+          {
+            title: this.title,
+            list_id: this.$props.list_id
+          },
+          { headers: { "Content-type": "application/x-www-form-urlencoded" } }
+        )
+        .then(() => {
+          this.close(true);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     },
-    close() {
-      this.title = "";
-      this.$emit("close-dialog");
-    },
-  },
+    close(reload) {
+      this.$emit("close-dialog", reload);
+    }
+  }
 };
 </script>
 

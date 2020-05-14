@@ -9,6 +9,7 @@
         <v-btn @click.stop="showTaskModal" class="btn btn-light">Добавить задание</v-btn>
       </v-card-actions>
       <CreateTaskModal
+        v-if="showCreateTaskModal"
         @close-dialog="closeTaskModal"
         :show="showCreateTaskModal"
         :list_id="$props.list.id"
@@ -47,7 +48,8 @@ export default {
     showTaskModal() {
       this.showCreateTaskModal = true;
     },
-    closeTaskModal() {
+    closeTaskModal(reload) {
+      if (reload === true) this.fetchTasks();
       this.showCreateTaskModal = false;
     }
   },
